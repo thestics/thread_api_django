@@ -9,6 +9,10 @@ class Post(models.Model):
     created_date = models.DateTimeField(auto_now=True)
     up_votes = models.IntegerField(default=0)
 
+    def upvote(self):
+        self.up_votes += 1
+        self.save()
+
 
 class Comment(models.Model):
 
