@@ -8,7 +8,6 @@ djangorestframework==3.11.0
 drf-extensions==0.6.0
 gunicorn==20.0.4
 Markdown==3.2.2
-pkg-resources==0.0.0
 psycopg2-binary==2.8.5
 pytz==2020.1
 six==1.15.0
