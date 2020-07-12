@@ -5,6 +5,16 @@ networks:
       driver: bridge
 
 services:
+    nginx:
+        build: ./nginx
+        ports:
+            - 8000:80
+        depends_on:
+            - web
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+        links:
+            - "web:web"
     db:
         image: postgres
         ports:
@@ -22,20 +32,20 @@ services:
         build: .
         environment:
           PYTHONBUFFERED: 1
-        command: python3 manage.py runserver 0.0.0.0:8000
+        command: gunicorn --bind 0.0.0.0:8000 thread_api.wsgi:application
         image: thread_api
         links:
             - "db:db"
         volumes:
             - .:/code
-        ports:
-            - "8000:8000"
+        expose:
+          - 8000
         depends_on:
             - db
         networks:
             - django
-    migration:
-        command: python3 manage.py migrate
+    prepare:
+        command: bash -c "python3 manage.py migrate --noinput && python3 manage.py collectstatic --noinput && python3 manage.py runcrons"
         volumes:
             - .:/code
         image: thread_api

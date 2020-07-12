@@ -23,14 +23,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "$l2^*3^8k#6001$wxc3t3pz)rs+w+zeq=8f_z!j3va4+8m!l42"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "django_cron",
     "thread",
     "rest_framework",
     "django.contrib.admin",
@@ -49,6 +50,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+CRON_CLASSES = [
+    "thread.cron.ResetUpVotes"
 ]
 
 ROOT_URLCONF = "thread_api.urls"
