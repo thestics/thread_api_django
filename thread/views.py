@@ -21,7 +21,7 @@ class PostViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
             post = self.get_object()
             post.upvote()
             return Response({"status": "success"})
-        except:
+        except Exception:
             return Response({"status": "fail"})
 
 
