@@ -9,14 +9,12 @@ from thread.models import Post, Comment
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
-
     class Meta:
         model = Post
-        fields = ['title', 'link', 'author', 'created_date', 'up_votes']
+        fields = ["title", "link", "author", "created_date", "up_votes"]
 
 
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
-
     class Meta:
         model = Comment
-        fields = ['author', 'created_date', 'content', 'related_post']
+        fields = ["author", "created_date", "content", "related_post"]

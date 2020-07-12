@@ -1,18 +1,18 @@
-import sys
-
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework_extensions.mixins import NestedViewSetMixin
 
 from thread.serializers import PostSerializer, CommentSerializer
 from thread.models import Post, Comment
 
 
-class PostViewSet(viewsets.ModelViewSet):
+class PostViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     """
     Endpoint to interact with posts
     """
-    queryset = Post.objects.all().order_by('-created_date')
+
+    queryset = Post.objects.all().order_by("-created_date")
     serializer_class = PostSerializer
 
     @action(detail=True)
@@ -20,14 +20,15 @@ class PostViewSet(viewsets.ModelViewSet):
         try:
             post = self.get_object()
             post.upvote()
-            return Response({'status': 'success'})
+            return Response({"status": "success"})
         except:
-            return Response({'status': 'fail'})
+            return Response({"status": "fail"})
 
 
-class CommentViewSet(viewsets.ModelViewSet):
+class CommentViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     """
     Endpoint to interact with comments
     """
-    queryset = Comment.objects.all().order_by('-created_date')
+
+    queryset = Comment.objects.all().order_by("-created_date")
     serializer_class = CommentSerializer
