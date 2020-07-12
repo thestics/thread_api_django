@@ -1,0 +1,45 @@
+version: '3'
+
+networks:
+  django:
+      driver: bridge
+
+services:
+    db:
+        image: postgres
+        ports:
+            - "5432:5432"
+        volumes:
+            - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+        restart: always
+        environment:
+            POSTGRES_USER:        postgres
+            POSTGRES_PASSWORD:    postgres
+            POSTGRES_DB:          thread_api
+        networks:
+            - django
+    web:
+        build: .
+        command: python3 manage.py runserver 0.0.0.0:8000
+        image: thread_api
+        links:
+            - "db:db"
+        volumes:
+            - .:/code
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+        networks:
+            - django
+    migration:
+        command: python3 manage.py migrate
+        volumes:
+            - .:/code
+        image: thread_api
+        depends_on:
+            - db
+        links:
+            - "db:db"
+        networks:
+            - django
