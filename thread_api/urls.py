@@ -22,7 +22,7 @@ from thread import views
 
 router = ExtendedDefaultRouter()
 (
-    router.register(r"posts", views.PostViewSet).register(
+    router.register(r"api/v1/posts", views.PostViewSet).register(
         r"comments",
         views.CommentViewSet,
         basename="post-comments",
