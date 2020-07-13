@@ -48,7 +48,7 @@ class Migration(migrations.Migration):
                 (
                     "related_post",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="thread.Post"
+                        on_delete=django.db.models.deletion.CASCADE, to="thread_.Post"
                     ),
                 ),
             ],
