@@ -32,7 +32,13 @@ router = ExtendedDefaultRouter()
 )
 
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
-    re_path(r"^api-auth/", include("rest_framework.urls", namespace="rest_framework")),
-] + router.urls + staticfiles_urlpatterns()
+urlpatterns = (
+    [
+        path("admin/", admin.site.urls),
+        re_path(
+            r"^api-auth/", include("rest_framework.urls", namespace="rest_framework")
+        ),
+    ]
+    + router.urls
+    + staticfiles_urlpatterns()
+)
