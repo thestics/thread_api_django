@@ -25,7 +25,7 @@ SECRET_KEY = "$l2^*3^8k#6001$wxc3t3pz)rs+w+zeq=8f_z!j3va4+8m!l42"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -52,9 +52,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CRON_CLASSES = [
-    "thread.cron.ResetUpVotes"
-]
+CRON_CLASSES = ["thread.cron.ResetUpVotes"]
 
 ROOT_URLCONF = "thread_api.urls"
 
@@ -128,9 +126,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated"
-    ],
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
 }
