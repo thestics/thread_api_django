@@ -15,7 +15,7 @@ class PostViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by("-created_date")
     serializer_class = PostSerializer
 
-    @action(detail=True)
+    @action(detail=True, methods=['post', 'put'])
     def upvote(self, request, pk=None):
         try:
             post = self.get_object()

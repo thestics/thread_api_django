@@ -45,9 +45,3 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
         data = validated_data.copy()
         data["related_post"] = related_post
         return super().create(data)
-
-    def update(self, instance, validated_data):
-        related_post = self.get_corresponding_post()
-        data = validated_data.copy()
-        data["related_post"] = related_post
-        return super().update(instance, data)
