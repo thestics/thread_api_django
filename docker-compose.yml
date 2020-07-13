@@ -18,6 +18,7 @@ services:
             - "web:web"
         networks:
             - django
+
     db:
         image: postgres
         ports:
@@ -32,6 +33,7 @@ services:
             POSTGRES_DB:          thread_api
         networks:
             - django
+
     web:
         build: .
         environment:
@@ -48,6 +50,7 @@ services:
             - db
         networks:
             - django
+
     prepare:
         command: bash -c "python3 manage.py migrate --noinput && python3 manage.py collectstatic --noinput && python3 manage.py runcrons"
         volumes:

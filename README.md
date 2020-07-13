@@ -24,3 +24,5 @@ In this case id is `c795553f1809`
 ```
 docker exec -it <CONTAINER_ID> python3 manage.py createsuperuser
 ```
+
+#### Deployed version on heroku can be found [here](https://django-thread-rest-api.herokuapp.com/)
