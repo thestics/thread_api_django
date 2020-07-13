@@ -26,3 +26,5 @@ docker exec -it <CONTAINER_ID> python3 manage.py createsuperuser
 ```
 
 #### Deployed version on heroku can be found [here](https://django-thread-rest-api.herokuapp.com/)
+
+#### Postman docks can be found [here](https://documenter.getpostman.com/view/12017745/T17Na4aM?version=latest)
